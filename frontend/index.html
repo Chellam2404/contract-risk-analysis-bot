@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-scale-balanced"></i> Validate.ai
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Analyze</a>
+                <a href="#">Templates</a>
+                <a href="#">History</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero / Upload Section -->
+        <section id="upload-section" class="hero-section">
+            <div class="hero-text">
+                <h1>AI Contract Review</h1>
+                <p>Upload your legal documents for instant risk analysis, clause detection, and compliance checks.</p>
+            </div>
+
+            <div class="upload-box" id="drop-zone">
+                <input type="file" id="file-input" accept=".pdf,.docx,.txt" hidden>
+                <div class="icon-container">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h3>Drag & Drop your contract here</h3>
+                <p>or input file manually</p>
+                <button class="btn btn-primary" id="browse-btn">Browse Files</button>
+                <p class="file-types">Supports PDF, DOCX, TXT (Max 16MB)</p>
+            </div>
+
+            <div id="loader" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p id="loading-text">Uploading and Processing...</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="results-section hidden">
+            
+            <div class="results-header">
+                <h2>Analysis Report</h2>
+                <button class="btn btn-secondary" id="reset-btn">New Analysis</button>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon risk-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <span class="metric-label">Risk Score</span>
+                        <div class="metric-value" id="score-value">--/100</div>
+                        <span class="badge" id="risk-badge">--</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fa-solid fa-file-contract"></i>
+                    </div>
+                    <div>
+                        <span class="metric-label">Contract Type</span>
+                        <div class="metric-value" id="contract-type">--</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <div>
+                        <span class="metric-label">Clauses</span>
+                        <div class="metric-value" id="clause-count">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Left Column: Summary & Risks -->
+                <div class="main-col">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fa-solid fa-align-left"></i> Executive Summary</h3>
+                        <div class="card-body markdown-body" id="summary-content">
+                            <!-- Content injected via JS -->
+                        </div>
+                    </div>
+
+                    <div class="card" id="risk-flags-card">
+                        <h3 class="card-title"><i class="fa-solid fa-triangle-exclamation"></i> Critical Risks</h3>
+                        <div class="card-body" id="risk-flags-content">
+                            <!-- Content injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Recommendations -->
+                <div class="side-col">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fa-regular fa-lightbulb"></i> Recommendations</h3>
+                        <div class="card-body" id="recommendations-content">
+                            <!-- Content injected via JS -->
+                            <ul class="rec-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <h3 class="card-title"><i class="fa-solid fa-magnifying-glass"></i> Clause Explorer</h3>
+                <div class="filters">
+                    <label>Filter by Risk:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" checked value="high"> High</label>
+                        <label><input type="checkbox" checked value="medium"> Medium</label>
+                        <label><input type="checkbox" checked value="low"> Low</label>
+                    </div>
+                </div>
+                <div class="clauses-list" id="clauses-list">
+                    <!-- Clauses injected here -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
